@@ -1,0 +1,28 @@
+body {
+    font-family: 'Roboto', Helvetica, sans-serif;
+}
+header {
+    background-color: #450084;
+    color: #cbb677;
+    padding: 10px
+}
+h1, h2, h3,h4 {
+    font-family: 'Exo', sans-serif;
+}
+.code_inline {
+    font-family: monospace;
+    background-color: #cccccc;
+    padding: 2px;
+    font-size:larger;
+}
+.definition {
+    font-style: italic;
+    
+}
+pre {
+    background-color: #cccccc;
+    padding: 10px;
+    font-size:larger;
+    color:green;
+    font-weight: bold;
+}
