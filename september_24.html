@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Jarod Reichel's Web Dev Blog</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Exo&family=Roboto&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+    </head>
+    
+    <body>
+        <header>
+            <h1>CS 347 Blog Entry - September 24, 2021</h1>
+        </header>
+        <main>
+            <h2>Part I: CSS Grid Display</h2>
+            <p>One thing I read about this week is how to use CSS to lay a page out as a grid, rather than using flexbox or media queries. This is helpful when you want to avoid using a lot of floats and positioning. In order to use the grid layout with CSS, you give the container element or class the <span class="code_inline">display: grid;</span> or <span class="code_inline">display: inline-grid;</span>  property. Then, in the child elements or classes you can set the <span class="code_inline">grid-column-start</span> or <span class="code_inline">grid-row-start</span> properties to refer to the row line or column line you want the element to start at. Column lines refer to the lines between columns, and row lines, likewise. Of course, there are also corresponding end properties you can set to determine which row/column the element ends at.</p>
+            <h3>Sample Code</h3>
+            <pre>
+                &lt;!DOCTYPE html&gt;
+                &lt;html&gt;
+                    &lt;head&gt;
+                        &lt;style&gt;
+                            .grid-container {
+                                display: grid;
+                                grid-template-columns: auto auto auto;
+                                grid-gap: 10px;
+                                background-color: #2196F3;
+                                padding: 10px;
+                            }
+
+                            .grid-container &gt; div {
+                                background-color: rgba(255, 255, 255, 0.8);
+                                text-align: center;
+                                padding: 20px 0;
+                                font-size: 30px;
+                            }
+
+                            .item1 {
+                                grid-column-start: 1;
+                                grid-column-end: 3;
+                            }
+                        &lt;/style&gt;
+                        &lt;/head&gt;
+                        &lt;body&gt;
+
+                            &lt;h1&gt;Grid Lines&lt;/h1&gt;
+
+                            &lt;div class="grid-container"&gt;
+                                &lt;div class="item1"&gt;1&lt;/div&gt;
+                                &lt;div class="item2"&gt;2&lt;/div&gt;
+                                &lt;div class="item3"&gt;3&lt;/div&gt;  
+                                &lt;div class="item4"&gt;4&lt;/div&gt;
+                                &lt;div class="item5"&gt;5&lt;/div&gt;
+                                &lt;div class="item6"&gt;6&lt;/div&gt;
+                                &lt;div class="item7"&gt;7&lt;/div&gt;
+                                &lt;div class="item8"&gt;8&lt;/div&gt;  
+                            &lt;/div&gt;
+
+                        &lt;p&gt;You can refer to line numbers when placing grid items.&lt;/p&gt;
+
+                        &lt;/body&gt;
+                    &lt;/html&gt;
+            </pre>
+            <p>The above code and information was sourced from <a href="https://www.w3schools.com/css/css_grid.asp">W3Schools.com</a>.</p>
+            <h2>Part II: CSS Frameworks (Bootstrap)</h2>
+            <p>While using media queries is helpful for understanding responsive web design as a beginner, developers often like to avoid "<a href="https://xkcd.com/927/">reinventing the wheel</a>". One other, and often simpler way to do responsive web design and development is to use a CSS framework. The most common CSS framework is Bootstrap, made by the Developers of Twitter. Bootstrap provides lots of different CSS classes designed to help make responsive web development easier. To include bootstrap in your site, you can simply use a <span class="code_inline">&lt;link&gt;</span> tag with the href attribute pointing to the CSS file hosted on Bootstrap's Content Delivery Network (CDN). Additionally, you can also download and host Bootstrap yourself, but this may increase load times for your site. In addition, you must also include the jQuery and Popper libraries if you wish to use certain Bootstrap components.</p>
+            <h3>Sample Code</h3>
+            <pre>
+                &lt;!DOCTYPE html&gt;
+                &lt;html lang="en"&gt;
+                    &lt;head&gt;
+                        &lt;title&gt;Bootstrap 4 Example&lt;/title&gt;
+                        &lt;meta charset="utf-8"&gt;
+                        &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+                        &lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"&gt;
+                        &lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"&gt;&lt;/script&gt;
+                        &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"&gt;&lt;/script&gt;
+                        &lt;script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"&gt;&lt;/script&gt;
+                    &lt;/head&gt;
+                    &lt;body&gt;
+
+                        &lt;div class="container-fluid"&gt;
+                            &lt;h1&gt;My First Bootstrap Page&lt;/h1&gt;
+                            &lt;p&gt;This is some text.&lt;/p&gt;
+                            &lt;/div&gt;
+
+                    &lt;/body&gt;
+                &lt;/html&gt;
+            </pre>
+            <p>The above code and information was sourced from <a href="https://www.w3schools.com/bootstrap4/bootstrap_get_started.asp">W3Schools.com</a>.</p>
+        </main>
+        <footer>
+            <p>Site by Jarod Reichel</p>
+        </footer>
+    </body>
+</html>
