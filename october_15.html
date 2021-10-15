@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Jarod Reichel's Web Dev Blog</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Exo&family=Roboto&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+    </head>
+    
+    <body>
+        <header>
+            <h1>CS 347 Blog Entry - October 15, 2021</h1>
+        </header>
+        <main>
+            <h2>Electron</h2>
+            <p>One thing I read about this week was that you can actually use web development tools and languages to make desktop applications. This idea is possible thanks to a framework called Electron, which is built on the Node.js ecosystem we have been learning about. Electron works by making the program window an embedded Chromium-based web browser, which of course can be customized by making a sort of "desktop website" with HTML, CSS, and JavaScript  In fact, many of the applications we use for class, such as Slack's desktop app and Visual Studio Code, were built using the Electron framework. To get started applying your knowledge of HTML, CSS, and JavaScript to desktop, simply follow these commands:</p>
+            <pre>
+                mkdir my-electron-app && cd my-electron-app
+                npm init
+                npm install --save-dev electron
+            </pre>
+            <p>In your package.json, add the following to be able to run <span class="code_inline">npm start</span>.</p>
+            <pre>
+                {
+                    "scripts": {
+                      "start": "electron ."
+                    }
+                }
+            </pre>
+            <p>Below is some starter code for an Electron app. It consists of an index.html file, a main.js file, and a preload.js file.</p>
+            <div style="display:inline-block;padding: 25px;">
+                <h4>index.html</h4>
+                <pre>
+                    &lt;!DOCTYPE html&gt;
+                    &lt;html&gt;
+                    &lt;head&gt;
+                        &lt;meta charset="UTF-8"&gt;
+                        &lt;title&gt;Hello World!&lt;/title&gt;
+                        &lt;meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" /&gt;
+                    &lt;/head&gt;
+                    &lt;body&gt;
+                        &lt;h1&gt;Hello World!&lt;/h1&gt;
+                        &lt;p&gt;
+                            We are using Node.js &lt;span id="node-version"&gt;&lt;/span&gt;,
+                            Chromium &lt;span id="chrome-version"&gt;&lt;/span&gt;,
+                            and Electron &lt;span id="electron-version"&gt;&lt;/span&gt;.
+                        &lt;/p&gt;
+                    &lt;/body&gt;
+                    &lt;/html&gt;
+                </pre>
+                </div>
+                <div style="display:inline-block;padding: 25px;">
+                <h4>main.js</h4>
+                <pre>
+                    const { app, BrowserWindow } = require('electron')
+                    const path = require('path')
+
+                    function createWindow () {
+                        const win = new BrowserWindow({
+                            width: 800,
+                            height: 600,
+                            webPreferences: {
+                                preload: path.join(__dirname, 'preload.js')
+                            }
+                        })
+
+                        win.loadFile('index.html')
+                    }       
+
+                    app.whenReady().then(() => {
+                        createWindow()
+
+                        app.on('activate', () => {
+                            if (BrowserWindow.getAllWindows().length === 0) {
+                                createWindow()
+                            }
+                        })
+                    })
+
+                    app.on('window-all-closed', () => {
+                    if (process.platform !== 'darwin') {
+                        app.quit()
+                    }
+                })
+                </pre>
+            </div>
+            <div style="display:inline-block;padding: 25px;">
+                <h4>preload.js</h4>
+                <pre>
+                    window.addEventListener('DOMContentLoaded', () => {
+                        const replaceText = (selector, text) => {
+                          const element = document.getElementById(selector)
+                          if (element) element.innerText = text
+                        }
+                      
+                        for (const type of ['chrome', 'node', 'electron']) {
+                          replaceText(`${type}-version`, process.versions[type])
+                        }
+                      })
+                      
+                </pre>
+            </div>
+            <p>Of course, this is effectively the "Hello world" for the Electron framework, and thus most electron apps are MUCH more complex. In addition, many commercial electron apps will use front-end frameworks such as React or Vue, as they often need to interface with external services, such as the Express web service we are currently working on. Other popular Electron apps besides those already mentioned include Discord and Twitch Desktop. Other electron apps I personally use include CurseForge Desktop and GDLauncher for Minecraft Mod Installation Management. These apps have to interface with the CurseForge website's RESTful API/Web Service in order to download Minecraft mods, modpacks, and display information about those mods and modpacks.</p>
+            <p>The above code and information was sourced from the <a href="https://www.electronjs.org/docs/latest/tutorial/quick-start">Electron documentation</a>.</p>
+        </main>
+        <footer>
+            <p>Site by Jarod Reichel</p>
+        </footer>
+    </body>
+</html>
