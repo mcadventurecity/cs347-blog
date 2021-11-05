@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Jarod Reichel's Web Dev Blog</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Exo&family=Roboto&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+    </head>
+    
+    <body>
+        <header>
+            <h1>CS 347 Blog Entry - November 5, 2021</h1>
+        </header>
+        <main>
+            <h2>Part I: React Bootstrap</h2>
+            <p>On my entry for September 24th, I discussed the basics of using CSS Frameworks such as Bootstrap, and how they can improve static sites. However, things start to get interesting when trying to apply CSS frameworks to React. Yes, you could just import the CSS files, but default Bootstrap is also dependent on jQuery, which is redundant with much of the Node ecosystem's functionality. Also, much of Bootstrap is made up of CSS classes, which, while useful for static sites, don't mesh well with the component-based architecture of React. Therefore, one of the first third-party libraries of React components was created: React Bootstrap.</p>
+            <p>React Bootstrap is a third-party collection of React components that recreate the functionality of Bootstrap's CSS and JavaScript, but without the unnecessary dependency on jQuery. In addition, the typical classes in Bootstrap, such as Row, Col, etc. are converted into React components, which can make your site's code much clearer. To get started with React Bootstrap, simply run <span class="code_inline">npm install react-bootstrap</span> in your terminal (in your project directory). Afterwards, to use React Bootstrap components, you must import them in your own code, like any other component. However, you should not import the entire library, as this slows your site down. Instead, import the individual components. Below is a full code sample.</p>
+            <h3>App.js</h3>
+            <pre>
+                import React, { useState } from 'react';
+
+                import Jumbotron from 'react-bootstrap/Jumbotron';
+                import Toast from 'react-bootstrap/Toast';
+                import Container from 'react-bootstrap/Container';
+                import Button from 'react-bootstrap/Button';
+
+                import './App.css';
+
+                const ExampleToast = ({ children }) =&gt; {
+                    const [show, toggleShow] = useState(true);
+
+                    return (
+                        &lt;&gt;
+                            {!show && &lt;Button onClick={() =&gt; toggleShow(true)}&gt;Show Toast&lt;/Button&gt;}
+                            &lt;Toast show={show} onClose={() =&gt; toggleShow(false)}&gt;
+                                &lt;Toast.Header&gt;
+                                    &lt;strong className="mr-auto"&gt;React-Bootstrap&lt;/strong&gt;
+                                &lt;/Toast.Header&gt;
+                                &lt;Toast.Body&gt;{children}&lt;/Toast.Body&gt;
+                            &lt;/Toast&gt;
+                        &lt;/&gt;
+                    );
+                };
+
+                const App = () =&gt; (
+                &lt;Container className="p-3"&gt;
+                    &lt;Jumbotron&gt;
+                    &lt;h1 className="header"&gt;Welcome To React-Bootstrap&lt;/h1&gt;
+                    &lt;ExampleToast&gt;
+                        We now have Toasts
+                        &lt;span role="img" aria-label="tada"&gt;
+                        🎉
+                        &lt;/span&gt;
+                    &lt;/ExampleToast&gt;
+                    &lt;/Jumbotron&gt;
+                &lt;/Container&gt;
+                );
+
+                export default App;
+            </pre>
+            <p>The above code and information was sourced from the following locations:</p>
+            <ul>
+                <li><a href="https://react-bootstrap.github.io/">The React Bootstrap website</a>.</li>
+                <li><a href="https://codesandbox.io/s/github/react-bootstrap/code-sandbox-examples/tree/master/basic?file=/src/App.js:0-1008">The React Bootstrap CodeSandbox Example</a>.</li>
+            </ul>
+        </main>
+        <footer>
+            <p>Site by Jarod Reichel</p>
+        </footer>
+    </body>
+</html>
