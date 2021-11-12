@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Jarod Reichel's Web Dev Blog</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Exo&family=Roboto&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+    </head>
+    
+    <body>
+        <header>
+            <h1>CS 347 Blog Entry - November 12, 2021</h1>
+        </header>
+        <main>
+            <h2>Part I: ES6 Classes</h2>
+            <p>Throughout its history, JavaScript has been through many different versions, and many different standards of JavaScript emerged during its early history. The modern "universal" standard for JavaScript is called EMCAScript, and the latest version is EMCAScript 6, or ES6 for short, which was released in 2015. ES6 introduced many of the features we have already seen used in the reading and labs involving React, such as arrow functions, array methods such as <span class="code_inline">map</span>, Destructuring assignments, and the <span class="code_inline">const</span> and <span class="code_inline">let</span> keywords. However, one other important feature of ES6 was the addition of classes.</p>
+            <p>Similar to other Object-oriented languages such as Java, a class has a constructor and other methods, and instances of a class are created using the <span class="code_inline">new</span> keyword. In addition, similar to other Object-oriented languages, the concept of Inheritance allows classes to inherit methods from a oarent class.</p>
+            <h3>Code Sample: ES6 Classes</h3>
+            <pre>
+                class Car {
+                    constructor(name) {
+                      this.brand = name;
+                    }
+                  
+                    present() {
+                      return 'I have a ' + this.brand;
+                    }
+                  }
+                  
+                  class Model extends Car {
+                    constructor(name, mod) {
+                      super(name);
+                      this.model = mod;
+                    }  
+                    show() {
+                        return this.present() + ', it is a ' + this.model
+                    }
+                  }
+                  const mycar = new Model("Ford", "Mustang");
+                  mycar.show();
+            </pre>
+            <p>The above code and information was sourced from <a href="https://www.w3schools.com/react/react_es6_classes.asp">W3Schools.com</a>.</p>
+            <h2>Part II: Classes as React Components</h2>
+            <p>React, like JavaScript itself, has gone through many versions, and many of the features that we commonly use now, including React Hooks such as <span class="code_inline">useState</span>, were not present until more recent versions of React. Before react version 16.8, the only way to track state in a React Component was to make the React component as an ES6 class, rather than a function. While this method of tracking state is still present, it is generally not recommended compared to React Hooks. Despite this, there are no plans yet to remove Class components from React.</p>
+            <h3>Code Sample: React Class Component</h3>
+            <pre>
+                class Car extends React.Component {
+                    constructor(props) {
+                      super(props);
+                      this.state = {
+                        brand: "Ford",
+                        model: "Mustang",
+                        color: "red",
+                        year: 1964
+                      };
+                    }
+                    changeColor = () =&gt; {
+                      this.setState({color: "blue"});
+                    }
+                    render() {
+                      return (
+                        &lt;div&gt;
+                          &lt;h1&gt;My {this.state.brand}&lt;/h1&gt;
+                          &lt;p&gt;
+                            It is a {this.state.color}
+                            {this.state.model}
+                            from {this.state.year}.
+                          &lt;/p&gt;
+                          &lt;button
+                            type="button"
+                            onClick={this.changeColor}
+                          &gt;Change color&lt;/button&gt;
+                        &lt;/div&gt;
+                      );
+                    }
+                  }
+            </pre>
+            <p>The above code and information was sourced from <a href="https://www.w3schools.com/react/react_class.asp">W3Schools.com</a>.</p>
+        </main>
+        <footer>
+            <p>Site by Jarod Reichel</p>
+        </footer>
+    </body>
+</html>
