@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Jarod Reichel's Web Dev Blog</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Exo&family=Roboto&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+    </head>
+    
+    <body>
+        <header>
+            <h1>CS 347 Blog Entry - November 19, 2021</h1>
+        </header>
+        <main>
+            <h2>Part I: React Memo</h2>
+            <p>When using a React Component, sometimes its props will not change, yet the component will be Re-Rendered by the browser, which especially with larger, more complex components, can result in performance deficits. This issue can be resolved by using a hook called <span class="code_inline">useMemo</span>, which makes a react component re-render only if its props have changed.</p>
+            <h3>index.js</h3>
+            <pre>
+                import { useState } from "react";
+                import ReactDOM from "react-dom";
+                import Todos from "./Todos";
+
+                const App = () =&gt; {
+                const [count, setCount] = useState(0);
+                const [todos, setTodos] = useState(["todo 1", "todo 2"]);
+
+                const increment = () =&gt; {
+                    setCount((c) =&gt; c + 1);
+                };
+
+                return (
+                    &lt;&gt;
+                    &lt;Todos todos={todos} /&gt;
+                    &lt;hr /&gt;
+                    &lt;div&gt;
+                        Count: {count}
+                        &lt;button onClick={increment}&gt;+&lt;/button&gt;
+                    &lt;/div&gt;
+                    &lt;/&gt;
+                );
+                };
+
+                ReactDOM.render(&lt;App /&gt;, document.getElementById('root'));
+            </pre>
+            <h3>Todos.js</h3>
+            <pre>
+                const Todos = ({ todos }) =&gt; {
+                    console.log("child render");
+                    return (
+                      &lt;&gt;
+                        &lt;h2&gt;My Todos&lt;/h2&gt;
+                        {todos.map((todo, index) =&gt; {
+                          return &lt;p key={index}&gt;{todo}&lt;/p&gt;;
+                        })}
+                      &lt;/&gt;
+                    );
+                  };
+                  
+                  export default Todos;
+            </pre>
+            <p>The above code and information was sourced from <a href="https://www.w3schools.com/react/react_memo.asp">W3Schools.com</a>.</p>
+            <h2>Part II: Other Web Development Frameworks</h2>
+            <p>For the final few blog entries, I will be going over various other Web Frameworks, including server-side or Backend frameworks like Express, front-end frameworks like React, as well as introducing some full-stack frameworks that provide both a front and backend solution.</p>
+            <p>While React is one of the most popular JavaScript-based front-end frameworks, alternatives such as Angular and Vue also exist, each with varying features and structures. In addition, server-side frameworks in various other languages can be used for varying complexities of web services. For example, Ruby on Rails, built on top of the Ruby language, is a popular server-side framework. Also, Microsoft's ASP.NET, built on C#, is a somewhat popular solution for some larger-scale web apps and services. In addition, Next.js is a JavaScript-based framework that adds server-side rendering functionality to React apps.</p>
+            <p>The above information on various frameworks was sourced from <a href="https://en.wikipedia.org/wiki/Comparison_of_server-side_web_frameworks">Wikipedia</a>.</p>
+        </main>
+        <footer>
+            <p>Site by Jarod Reichel</p>
+        </footer>
+    </body>
+</html>
