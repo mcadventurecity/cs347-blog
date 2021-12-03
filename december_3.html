@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Jarod Reichel's Web Dev Blog</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Exo&family=Roboto&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+    </head>
+    
+    <body>
+        <header>
+            <h1>CS 347 Blog Entry - December 3, 2021</h1>
+        </header>
+        <main>
+           <h2>Part I: ASP.NET Core</h2>
+           <p>First, let me provide a bit of background information. When I first began to teach myself basic HTML and CSS around nine years ago in the fall of 2012, the Web Development scene was significantly different from today. Responsive design had just begun to take off, and many of the frameworks we use today were in their infancy. My personal passion project at the time was to create a reference website for LEGO&reg; sets, similar to <a href="https://brickset.com">Brickset.com</a>. However, 11-year-old me soon realized that due to the limits of static HTML, I should probably migrate to something that can support a database backend. A bit later, I settled on Microsoft SQL Server for the DBMS, and a framework called ASP.NET Web Forms for the site itself.</p>
+           <p>ASP.NET, at the time, was built on the legacy .NET framework, which had been around in the Microsoft ecosystem since 2002. It was only supported by Windows servers, and was therefore less accessible to Linux/MacOS users. However, in 2015, Microsoft unveiled what would later become known as the .NET Core framework, which then after release was named .NET 5 (To avoid confusion with Legacy .NET). This platform was not only cross-platform, unlike the legacy versions, but also open source. I initially jumped at the opportunity to modernize my aging website project, however due to various external factors lost interest until recently. My first site has therefore been defunct since 2016.</p>
+           <p>ASP.NET core is built on the C# (C Sharp) programming language. It provides an all-in-one solution for full-stack development, however can be configured to exist as a backend web service, with frameworks such as React being used instead for the interface. If the full package is used, interfaces can either use the Model-View-Controller (MVC) pattern or a library called Razor Pages for the UI.</p>
+           <p>To create a new Web App with ASP.NET core, run the following commands after installing the .NET Core framework.</p>
+           <pre>
+            dotnet new webapp -o aspnetcoreapp
+            dotnet dev-certs https --trust
+            cd aspnetcoreapp
+            dotnet watch run
+           </pre>
+           <p>ASP.NET Core Razor pages are located in the Pages subfolder of your project, and have a .cshtml extension. Here's a simple index.cshtml that shows the current date and time.</p>
+           <h3>index.cshtml</h3>
+           <pre>
+            @page
+            @model IndexModel
+            @{
+                ViewData["Title"] = "Home page";
+            }
+            
+            &lt;div class="text-center"&gt;
+                &lt;h1 class="display-4"&gt;Welcome&lt;/h1&gt;
+                &lt;p&gt;Hello, world! The time on the server is @DateTime.Now&lt;/p&gt;
+            &lt;/div&gt;
+           </pre>
+           <p>The Preceding Code and Information was sourced from <a href="https://docs.microsoft.com/en-us/aspnet/core/getting-started/?view=aspnetcore-6.0&tabs=windows">Microsoft's Own ASP.NET Core Getting Started Guide</a>, as well as my own memory and experience.</p>
+        </main>
+        <footer>
+            <p>Site by Jarod Reichel</p>
+        </footer>
+    </body>
+</html>
